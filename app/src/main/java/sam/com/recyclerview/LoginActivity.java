@@ -53,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         params.put("email", email);
         params.put("password", pw);
 
-        String url = "http://52.25.32.130:8080//TomcatForm/servlet/TomcatForm";
+        // changed the api
+        String url = "http://ec2-54-202-112-215.us-west-2.compute.amazonaws.com:8080/WebProject/AndroidLogIn/";
 
 
 
@@ -65,10 +66,12 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.d("response", response);
 
-                        if(response.contains("You have entered an invalid email or password")){
+                        if(response.contains("1")){
                             Intent resultPage = new Intent(LoginActivity.this, LoginActivity.class);
                             resultPage.putExtra("result", response);
                             startActivity(resultPage);
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), " usenname or password invalid !", Toast.LENGTH_LONG).show();
                         }
                         else {
                             Intent resultPage = new Intent(LoginActivity.this, SearchActivity.class);
