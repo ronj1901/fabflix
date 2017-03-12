@@ -13,6 +13,18 @@
 
 
     <!-- Login progress -->
+    
+    <TextView
+
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="sans-serif-condensed" android:text="Login Form"
+        android:textAlignment="center"
+        android:textColorLink="?android:attr/navigationBarColor"
+
+        android:textSize="30sp"
+        android:textStyle="bold"/>
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"

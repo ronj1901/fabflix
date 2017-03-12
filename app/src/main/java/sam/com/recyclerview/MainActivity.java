@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         recyclerView  = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,16 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         loadRecyclerViewData(URL_DATA);
 
-
-
-//        for(int i = 0; i < 10; i++){
-//            ListItem listItem = new ListItem("heading" + i+1, "Lorem Ipsum dummy Text");
-//            listItems.add(listItem);
-//        }
-//
-//        adapter = new MyAdapter(listItems,this);
-//
-//        recyclerView.setAdapter(adapter);
 
     }
 
@@ -85,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         ListItem item  = new ListItem(
-                                o.getString("title"),
-                                o.getString("director"),
+                                 o.getString("title"),
+                                 "",
                                 image
                         );
                         listItems.add(item);

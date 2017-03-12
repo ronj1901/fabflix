@@ -37,16 +37,17 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
+
                     android:id="@+id/movieInput"
                     style="@style/Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="50dp"
                     android:hint="Search for movies"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" android:singleLine="true"
-                    android:textColor="@color/cardview_light_background"/>
+                    android:textColor="@color/cardview_light_background" android:textSize="24sp"/>
 
             </android.support.design.widget.TextInputLayout>
 

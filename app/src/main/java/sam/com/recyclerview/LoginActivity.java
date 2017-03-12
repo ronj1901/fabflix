@@ -2,11 +2,14 @@ package sam.com.recyclerview;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,10 +24,26 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+
+    private SharedPreferences sharedPreferences;
+    private static final String MY_PREF = "myPref";
+    private EditText emailEditText;
+    private EditText passwordEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        emailEditText = (EditText) findViewById(R.id.emailText);
+        passwordEditText = (EditText) findViewById(R.id.passwordTextBox);
+        String email = getSharedPreferences(MY_PREF, MODE_PRIVATE).getString("email", "");
+
+        emailEditText.setText(email);
+
+
+
+
     }
 
 
@@ -44,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordeditText = (EditText) findViewById(R.id.passwordTextBox);
         final String email = emaileditText.getText().toString();
         final String pw = passwordeditText.getText().toString();
+        //
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREF, MODE_PRIVATE).edit();
+        editor.putString("email", email);
+        editor.apply();
+
         final ProgressDialog progressDialog =  new ProgressDialog(this);
         if(email.isEmpty() || pw.isEmpty()){
             progressDialog.dismiss();
@@ -58,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -69,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(response.contains("1")){
                             Intent resultPage = new Intent(LoginActivity.this, LoginActivity.class);
                             resultPage.putExtra("result", response);
+
                             startActivity(resultPage);
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), " usenname or password invalid !", Toast.LENGTH_LONG).show();
